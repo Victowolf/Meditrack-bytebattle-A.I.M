@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHR Staff Panel</title>
+    <link rel="stylesheet" href="css/staff.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="navbar-title">EHR – Staff Panel</h1>
+            <button id="logoutButton" class="btn btn-outline">Logout</button>
+        </div>
+    </nav>
+
+    <main class="container dashboard-grid">
+        <div class="left-column">
+            <section class="panel" id="search-patient-section">
+                <div class="panel-header">
+                    <h3>Search Patient</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="patientSearchInput">Patient ID:</label>
+                        <input type="text" id="patientSearchInput" class="input-field" placeholder="Enter ID">
+                    </div>
+                    <button id="searchPatientButton" class="btn btn-primary">Search</button>
+                    
+                   <!-- <div class="form-group">
+  <label for="patientSelector">Or Select from List:</label>
+  <select id="patientSelector" class="input-field">
+    <option value="">-- Select Patient --</option>
+  </select>
+</div>-->
+
+                    <div id="patientInfoDisplay" class="patient-info-container">
+                        <h4>Patient Details:</h4>
+                        <p><strong>Name:</strong> <span id="patientNameDisplay">-</span></p>
+                        <p><strong>Age:</strong> <span id="patientAgeDisplay">-</span></p>
+                        <p><strong>ID:</strong> <span id="patientIdDisplay">-</span></p>
+                        <p><strong>Gender:</strong> <span id="patientGenderDisplay">-</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="upload-reports-section">
+                <div class="panel-header">
+                    <h3>Upload Health Reports</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="reportFile">Select Report (PDF, JPG, PNG):</label>
+                        <input type="file" id="reportFile" class="input-field" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+                    <p id="fileNamePreview">No file selected.</p>
+                    <button id="uploadReportButton" class="btn btn-primary">Upload Report</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="right-column">
+            <section class="panel" id="vitals-entry-section">
+                <div class="panel-header">
+                    <h3>Vitals Entry</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="bloodPressure">Blood Pressure (e.g., 120/80 mmHg):</label>
+                        <input type="text" id="bloodPressure" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label for="pulse">Pulse (bpm):</label>
+                        <input type="number" id="pulse" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label for="temperature">Temperature (°C):</label>
+                        <input type="number" step="0.1" id="temperature" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="number" step="0.1" id="weight" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Height (cm):</label>
+                        <input type="number" id="height" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label for="bmi">BMI:</label>
+                        <input type="text" id="bmi" class="input-field" readonly>
+                    </div>
+                    <button id="submitVitalsButton" class="btn btn-primary">Submit Vitals</button>
+                </div>
+            </section>
+
+            <section class="panel" id="billing-section">
+                <div class="panel-header">
+                    <h3>Billing</h3>
+                </div>
+                <div class="panel-body">
+                    <button id="generateInvoiceButton" class="btn btn-secondary">Generate Invoice</button>
+                    <div id="invoiceContainer" class="invoice-container hidden">
+                        <div class="invoice-header-info">
+                            <h3>🏥 Hospital/Clinic Name</h3>
+                            <p>123 Main Street, City, State, Zip</p>
+                            <p>Phone: (XXX) XXX-XXXX | Email: contact@hospital.com</p>
+                        </div>
+                        <h4>📄 Patient Bill / Invoice</h4>
+                        <div class="invoice-meta">
+                            <div class="form-group">
+                                <label for="invoiceNo">Invoice No:</label>
+                                <input type="text" id="invoiceNo" value="INV-2025-00123" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceDate">Date:</label>
+                                <input type="text" id="invoiceDate" class="input-field" readonly>
+                            </div>
+                             <div class="form-group">
+                                <label for="generatedBy">Generated By (Staff):</label>
+                                <input type="text" id="generatedBy" value="John Doe" class="input-field">
+                            </div>
+                        </div>
+
+                        <h4>👤 Patient Details:</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="billPatientId">Patient ID:</label>
+                                <input type="text" id="billPatientId" value="P-0001" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="billPatientName">Name:</label>
+                                <input type="text" id="billPatientName" value="Rahul Sharma" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="billPatientAgeGender">Age / Gender:</label>
+                                <input type="text" id="billPatientAgeGender" value="35 / Male" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="billPatientPhone">Phone:</label>
+                                <input type="text" id="billPatientPhone" value="+91-XXXXXXXXXX" class="input-field">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="billPatientAddress">Address:</label>
+                                <input type="text" id="billPatientAddress" value="12 Green Avenue, Mumbai" class="input-field">
+                            </div>
+                        </div>
+
+                        <h4>💉 Consultation & Services Provided:</h4>
+                        <table id="servicesTable">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Service Description</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price (INR)</th>
+                                    <th>Total (INR)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesTableBody">
+                                </tbody>
+                        </table>
+                        <button id="addServiceButton" class="btn btn-simple">Add Service</button>
+
+                        <div class="billing-summary">
+                            <div class="form-group">
+                                <label for="subtotal">Subtotal (INR):</label>
+                                <input type="text" id="subtotal" class="input-field" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="gstPercentage">GST (%):</label>
+                                <input type="number" id="gstPercentage" value="5" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="gstAmount">GST Amount (INR):</label>
+                                <input type="text" id="gstAmount" class="input-field" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="finalAmount">Final Amount (INR):</label>
+                                <input type="text" id="finalAmount" class="input-field" readonly>
+                            </div>
+                        </div>
+
+                        <h4>💳 Payment Details:</h4>
+                         <div class="form-grid">
+                            <div class="form-group">
+                                <label for="paymentMethod">Payment Method:</label>
+                                <select id="paymentMethod" class="input-field">
+                                    <option value="UPI">UPI</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Card">Card</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="transactionId">Transaction ID:</label>
+                                <input type="text" id="transactionId" value="TXN123456789" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="amountPaid">Amount Paid (INR):</label>
+                                <input type="number" id="amountPaid" value="0" class="input-field">
+                            </div>
+                             <div class="form-group">
+                                <label for="balanceDue">Balance Due (INR):</label>
+                                <input type="text" id="balanceDue" class="input-field" readonly>
+                            </div>
+                        </div>
+
+                        <h4>📌 Remarks (Optional):</h4>
+                        <textarea id="remarks" class="input-field" rows="3" placeholder="Patient advised to follow up in 7 days. Carry reports during next visit."></textarea>
+
+                        <div class="signature-section">
+                            <h4>✅ Authorized Signature:</h4>
+                            <p>Dr. Jighyanshu Kumar</p>
+                            <p>MBBS, MD – General Medicine</p>
+                            <div class="signature-stamp">(Signature & Stamp)</div>
+                        </div>
+
+                        <div class="invoice-actions">
+                            <button id="printInvoiceButton" class="btn btn-primary">Download PDF (Print)</button>
+                            <button id="downloadJpegButton" class="btn btn-secondary">Download JPEG (Simulated)</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="toastNotification" class="toast hidden">
+        <p id="toastMessage"></p>
+    </div>
+
+    <script src="js/staff.js"></script>
+</body>
+</html>

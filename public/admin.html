@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <!-- Add Three.js for 3D visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <!-- Ethers.js for blockchain connection -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+
+  <div class="header">
+   <h1>Admin Dashboard</h1>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="box" id="admin-details">
+      <h2>Admin Details:</h2>
+      <p>Name: Super Admin</p>
+      <p>Email: admin@ehr.com</p>
+      <p>Role: System Monitor</p>
+    </div>
+
+    <div class="box" id="blockchain-visualizer">
+      <h2>Blockchain Visualizer:</h2>
+      <canvas id="block-canvas" width="600" height="200"></canvas>
+    </div>
+
+    <div class="box" id="access-control">
+      <h2>Access Control:</h2>
+      <div class="scrollable-lists">
+        <div>
+          <h3>Doctor:</h3>
+          <ul id="doctor-list"></ul>
+        </div>
+        <div>
+          <h3>Staff:</h3>
+          <ul id="patient-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" id="audit-logs">
+      <h2>Audit Logs:</h2>
+      <div class="terminal" id="log-console"></div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

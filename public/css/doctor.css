@@ -1,0 +1,1031 @@
+
+
+/* Base styles */
+:root {
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --secondary: #10b981;
+  --secondary-hover: #34d399;
+  --blue: #2563eb;
+  --blue-hover: #3b82f6;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --white: #ffffff;
+  --black: #000000;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --grey-600: #4b5563;
+  --grey-700: #374151;
+  --grey-800: #1f2937;
+  --grey-900: #111827;
+  --border-radius: 0.375rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-800);
+  background-color: var(--grey-50);
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--grey-200);
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+.logo h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.doctor-name {
+  font-size: 0.875rem;
+  color: var(--grey-500);
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  padding: 1.5rem 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: calc(100vh - 5rem);
+}
+
+.patient-list-panel,
+.patient-details-panel {
+  height: calc(50% - 0.75rem);
+}
+
+.right-column {
+  height: calc(100vh - 5rem);
+}
+
+/* Panels */
+.panel {
+  background-color: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.panel-header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.panel-footer {
+  border-top: 1px solid var(--grey-200);
+  background-color: var(--grey-50);
+  padding: 1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: none;
+  outline: none;
+}
+
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.primary-btn {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.secondary-btn {
+  background-color: var(--secondary);
+  color: var(--white);
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+.blue-btn {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.blue-btn:hover:not(:disabled) {
+  background-color: var(--blue-hover);
+}
+
+.outline-btn {
+  background-color: transparent;
+  border: 1px solid var(--grey-300);
+  color: var(--grey-700);
+}
+
+.outline-btn:hover:not(:disabled) {
+  background-color: var(--grey-100);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: var(--white);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.button-group .btn {
+  flex: 1 1 0;
+}
+
+@media (min-width: 640px) {
+  .button-group .btn {
+    flex: none;
+  }
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Patient List */
+.patient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.patient-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.patient-item:hover {
+  background-color: var(--grey-100);
+}
+
+.patient-item.selected {
+  background-color: var(--grey-100);
+  border-color: var(--primary);
+}
+
+.patient-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--grey-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  overflow: hidden;
+}
+
+.patient-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.patient-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--grey-800);
+  margin-bottom: 0.25rem;
+}
+
+.patient-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--grey-600);
+  gap: 0.5rem;
+}
+
+.patient-pud,
+.patient-gender {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  margin-left: 0.5rem;
+}
+
+.status-stable {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.status-critical {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.status-warning {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+/* Patient Details */
+.patient-details {
+  height: 100%;
+}
+
+.patient-details-empty,
+.prescription-empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--grey-500);
+}
+
+.patient-details-empty svg,
+.prescription-empty svg {
+  width: 3rem;
+  height: 3rem;
+  color: var(--grey-300);
+  margin-bottom: 1rem;
+}
+
+.patient-header {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.patient-header-info {
+  flex: 1;
+}
+
+.patient-full-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.patient-id {
+  font-size: 0.75rem;
+  color: var(--grey-500);
+  margin-top: 0.25rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-card {
+  background-color: var(--grey-50);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: var(--grey-500);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-weight: 600;
+}
+
+.contact-info,
+.condition-info,
+.appointment-info {
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-row svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--grey-400);
+  margin-right: 0.5rem;
+}
+
+.appointment-card {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--blue);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+}
+
+.appointment-date {
+  display: flex;
+  align-items: center;
+}
+
+.appointment-date svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* Prescription Form */
+.prescription-paper {
+  padding: 1rem;
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+}
+
+.prescription-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.prescription-hospital {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.prescription-address,
+.prescription-contact {
+  font-size: 0.75rem;
+  color: var(--grey-600);
+}
+
+.prescription-patient-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px dashed var(--grey-300);
+  border-bottom: 1px dashed var(--grey-300);
+}
+
+.prescription-patient,
+.prescription-date {
+  font-size: 0.875rem;
+}
+
+.prescription-label {
+  font-weight: 500;
+}
+
+.prescription-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-header svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary);
+  margin-right: 0.25rem;
+}
+
+.section-header h4 {
+  font-weight: 600;
+}
+
+.medication-list,
+.lab-test-list {
+  margin-bottom: 0.5rem;
+}
+
+.medication-item,
+.lab-test-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.rx-symbol {
+  color: var(--primary);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.medication-details,
+.lab-test-name {
+  flex: 1;
+}
+
+.medication-name {
+  font-weight: 500;
+}
+
+.medication-instruction,
+.medication-dispense,
+.medication-refills {
+  font-size: 0.875rem;
+  color: var(--grey-600);
+}
+
+.form-group {
+  margin-top: 0.5rem;
+  border-top: 1px dashed var(--grey-300);
+  padding-top: 0.5rem;
+}
+
+.medication-form,
+.lab-test-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.form-button {
+  margin-top: 0.5rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-button:hover {
+  background-color: var(--secondary-hover);
+}
+
+.form-button svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+.small-input {
+  display: inline-block;
+  width: 8rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.signature-area {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--grey-300);
+  display: flex;
+  justify-content: space-between;
+}
+
+.signature-line {
+  height: 3rem;
+  border-bottom: 1px solid var(--grey-700);
+  width: 8rem;
+}
+
+.signature-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.signature-title {
+  font-size: 0.75rem;
+  color: var(--grey-600);
+  text-align: center;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.modal-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--grey-500);
+  line-height: 1;
+}
+
+.modal-body {
+  flex: 1;
+  overflow: hidden;
+  padding: 0;
+}
+
+#pdf-preview {
+  width: 100%;
+  height: 70vh;
+  border: none;
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--grey-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--grey-800);
+  color: var(--white);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  transition: transform 0.3s, opacity 0.3s;
+  max-width: 300px;
+}
+
+.toast.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Utilities */
+.hidden {
+  display: none;
+}
+/* Chatbot*/
+.chatbot {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  width: 500px;
+  height: 600px;
+  background: white;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  z-index: 1002;
+  cursor: default;
+}
+.chatbot.show{
+   display: flex;
+}
+.chatbot-header {
+  padding: 0.75rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: move;
+  user-select: none;
+}
+
+#close-chatbot-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+#chat-form {
+  display: flex;
+  padding: 0.75rem;
+  border-top: 1px solid var(--grey-200);
+  gap: 0.5rem;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+}
+
+.chat-submit-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.chatbot .user,
+.chatbot .bot {
+  margin-bottom: 0.5rem;
+}
+
+.chatbot .user {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.chatbot .bot {
+  color: var(--grey-800);
+}
+#chatbot-container {
+  display: none; /* ✅ Completely hidden initially */
+  position: fixed;
+  width: 500px;
+  height: 600px;
+  background: white;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  flex-direction: column;
+  z-index: 1002;
+}
+
+.floating-panel {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-height: 70vh;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-header {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floating-body {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 💬 Assistant-style Floating Panel */
+.floating-panel {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  max-height: 75vh;
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  border: 1px solid #d1d5db;
+  animation: floatFade 0.3s ease-in-out;
+}
+
+/* Header styled like Assistant's */
+.floating-header {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.9rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+/* Close button styled like assistant */
+.floating-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.floating-header button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.15);
+}
+
+.floating-body {
+  padding: 1.2rem;
+  overflow-y: auto;
+  background-color: #f9fafb;
+  flex-grow: 1;
+}
+
+/* Individual appointment block */
+.appointment-card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.appointment-card p {
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Utility class to hide */
+.hidden {
+  display: none;
+}
+
+/* Entrance animation */
+@keyframes floatFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}

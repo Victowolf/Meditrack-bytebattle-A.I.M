@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediTrack - Patient Management System</title>
+  <link rel="stylesheet" href="css/admin2.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="ri-heart-pulse-line"></i>
+            <span>MediTrack</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="landing-header">
+          <h1>Patient Management System</h1>
+          <p>Streamlined healthcare management for patients and doctors</p>
+        </div>
+
+     <div class="card-grid">
+  <!-- New Patient Registration -->
+  <div class="card" onclick="navigateTo('patientREG.html')">
+    <div class="card-body">
+      <div class="card-icon">
+        <i class="ri-user-add-line"></i>
+      </div>
+      <h3>New Patient Registration</h3>
+      <p>Create a new patient profile and get a unique patient ID</p>
+    </div>
+    <div class="card-footer">
+      <span>Get Started <i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+
+  <!-- Patient Login -->
+  <div class="card" onclick="navigateTo('patlog.html')">
+    <div class="card-body">
+      <div class="card-icon green">
+        <i class="ri-user-search-line"></i>
+      </div>
+      <h3>Patient Login</h3>
+      <p>View and update your patient information</p>
+    </div>
+    <div class="card-footer green">
+      <span>Continue <i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+
+  <!-- Staff Login (NEW) -->
+  <div class="card" onclick="navigateTo('stafflog.html')">
+    <div class="card-body">
+      <div class="card-icon green">
+        <i class="ri-nurse-line"></i>
+      </div>
+      <h3>Staff Login</h3>
+      <p>For medical staff and assistants to manage assigned tasks</p>
+    </div>
+    <div class="card-footer green">
+      <span>Enter <i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+
+  <!-- Doctor Login (moved below) -->
+  <div class="card" onclick="navigateTo('doclog.html')">
+    <div class="card-body">
+      <div class="card-icon amber">
+        <i class="ri-stethoscope-line"></i>
+      </div>
+      <h3>Doctor Login</h3>
+      <p>Access patient data and create prescriptions</p>
+    </div>
+    <div class="card-footer amber">
+      <span>Login <i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+
+  <!-- Admin Login -->
+  <div class="card" onclick="navigateTo('adminlog.html')">
+    <div class="card-body">
+      <div class="card-icon amber">
+        <i class="ri-admin-line"></i>
+      </div>
+      <h3>Super Admin Login</h3>
+      <p>Manage doctors, patients and system access</p>
+    </div>
+    <div class="card-footer amber">
+      <span>Login <i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+</div>
+
+
+        <div class="image-grid">
+          <h2>Trusted by Healthcare Professionals</h2>
+          <div class="image-container">
+            <div class="image-card">
+              <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Modern hospital waiting area"/>
+              <div class="image-overlay">
+                <h3>Streamlined Patient Management</h3>
+                <p>Reduce wait times and improve patient experience</p>
+              </div>
+            </div>
+            <div class="image-card">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Doctor using digital tools"/>
+              <div class="image-overlay">
+                <h3>Digital Healthcare Solutions</h3>
+                <p>Modern tools for healthcare professionals</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="logo">
+              <i class="ri-heart-pulse-line"></i>
+              <span>MediTrack</span>
+            </div>
+            <p>Streamlined healthcare management</p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-links-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-links-column">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <p>&copy; <span id="current-year"></span> MediTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

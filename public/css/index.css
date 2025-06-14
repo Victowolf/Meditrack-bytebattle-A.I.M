@@ -1,0 +1,173 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafb;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wallet Bar */
+.wallet-bar {
+  width: 100%;
+  max-width: 1600px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+/* Wallet Bar Button */
+.wallet-bar button {
+  color: rgb(19, 96, 251);
+  border: none;
+  padding: 10px 670px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#walletDisplay {
+  font-size: 12px;
+  color: #333;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+#logo{
+  align-items: flex-start;
+}
+/* Main Layout Area */
+main {
+  flex: 1 0 auto; /* allows main to grow and push footer down */
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 40px; /* avoid overlapping with footer */
+}
+
+/* Headings */
+main h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Login Box */
+.login-box {
+  background: white;
+  width: 100%;
+  max-width: 300px;
+  height: 400px;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.login-box button {
+  width: 50%;
+  padding: 12px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Footer */
+.footer {
+  flex-shrink: 0; /* prevent footer from collapsing */
+  background-color: white;
+  border-top: 1px solid #e5e7eb;
+  padding: 15px 20px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}
+
+.footer-info {
+  margin-bottom: 1rem;
+}
+
+.footer-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links-column h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-column li {
+  margin-bottom: 0.25rem;
+}
+
+.footer-links-column a {
+  font-size: 0.875rem;
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links-column a:hover {
+  color: #2563eb;
+}
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 1rem;
+}

@@ -1,0 +1,435 @@
+/* Base styles adapted from doctor.css and patientREG.css */
+:root {
+  --primary: #3b82f6; /* blue-500 */
+  --primary-hover: #2563eb; /* blue-600 */
+  --secondary: #10b981; /* green-500 */
+  --secondary-hover: #059669; /* green-600 */
+  --danger: #ef4444; /* red-500 */
+  --white: #ffffff;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --grey-600: #4b5563;
+  --grey-700: #374151;
+  --grey-800: #1f2937;
+  --border-radius: 0.375rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-800);
+  background-color: var(--grey-50);
+}
+
+.container {
+  width: 100%;
+  max-width: 1320px; /* Increased max-width for better spacing */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--grey-200);
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 992px) { /* Adjusted breakpoint for 2-column layout */
+  .dashboard-grid {
+    grid-template-columns: 1fr 1.5fr; /* Left column smaller, right larger */
+  }
+}
+
+.left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Panel / Card Styling */
+.panel {
+  background-color: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  background-color: var(--grey-100); /* Lighter header */
+  color: var(--primary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.panel-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.panel-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--grey-700);
+}
+
+.input-field,
+select.input-field,
+textarea.input-field {
+  width: 100%;
+  padding: 0.65rem 0.75rem; /* Slightly more padding */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--grey-700);
+  background-color: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field:focus,
+select.input-field:focus,
+textarea.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); /* Primary color focus ring */
+}
+
+textarea.input-field {
+    min-height: 80px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem; /* Adjusted padding */
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.btn-outline:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: var(--white);
+}
+.btn-danger:hover {
+    background-color: #d9534f; /* Darker red */
+}
+
+.btn-simple { /* For "Add Service" like buttons */
+    background-color: var(--grey-200);
+    color: var(--grey-700);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+.btn-simple:hover {
+    background-color: var(--grey-300);
+}
+
+
+/* Patient Info Display */
+.patient-info-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--grey-50);
+    border: 1px solid var(--grey-200);
+    border-radius: var(--border-radius);
+}
+.patient-info-container h4 {
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+.patient-info-container p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+.patient-info-container p strong {
+    color: var(--grey-600);
+}
+
+/* File Upload Preview */
+#fileNamePreview {
+    font-size: 0.875rem;
+    color: var(--grey-600);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--grey-100);
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--grey-300);
+}
+
+/* Invoice Specific Styles */
+.invoice-container {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--grey-300);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+}
+
+.invoice-header-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.invoice-header-info h3 {
+    font-size: 1.5rem;
+    color: var(--grey-800);
+    margin-bottom: 0.25rem;
+}
+.invoice-header-info p {
+    font-size: 0.9rem;
+    color: var(--grey-600);
+    line-height: 1.4;
+}
+
+.invoice-container > h4 { /* Section titles like "Patient Bill / Invoice" */
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--grey-200);
+}
+
+.invoice-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+#servicesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+#servicesTable th, #servicesTable td {
+    border: 1px solid var(--grey-300);
+    padding: 0.75rem;
+    text-align: left;
+}
+#servicesTable th {
+    background-color: var(--grey-100);
+    font-weight: 600;
+    color: var(--grey-700);
+}
+#servicesTable input[type="text"],
+#servicesTable input[type="number"] {
+    width: 90%;
+    padding: 0.4rem;
+    font-size: 0.875rem;
+}
+#servicesTable .action-cell {
+    text-align: center;
+}
+
+.billing-summary {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--grey-300);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: flex-end; /* Align items for better visual */
+}
+.billing-summary .form-group {
+    margin-bottom: 0; /* Remove default bottom margin for compact look */
+}
+
+.signature-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--grey-300);
+}
+.signature-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+.signature-section p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--grey-700);
+}
+.signature-stamp {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: var(--grey-500);
+}
+
+.invoice-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--grey-800);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(100%);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.toast.success {
+    background-color: var(--secondary);
+}
+.toast.error {
+    background-color: var(--danger);
+}
+.toast.hidden {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* Utility classes */
+.hidden {
+  display: none !important;
+}
+
+/* Print styles for invoice */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .invoice-container, .invoice-container * {
+    visibility: visible;
+  }
+  .invoice-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .btn, .navbar, .panel:not(#billing-section), #generateInvoiceButton, .invoice-actions button#downloadJpegButton {
+    display: none !important;
+  }
+  .panel-body { /* Ensure full invoice content is printed */
+    overflow-y: visible;
+  }
+  .invoice-actions button#printInvoiceButton { /* Hide print button itself during printing */
+      display: none !important;
+  }
+  .input-field, select.input-field, textarea.input-field {
+    border: 1px solid #ccc; /* Simple border for print */
+    box-shadow: none;
+  }
+  /* Make readonly fields appear as text */
+  input[readonly].input-field {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+  }
+}

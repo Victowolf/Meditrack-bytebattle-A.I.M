@@ -1,0 +1,849 @@
+/* Base styles - Replicating doctor.css root variables and basic resets */
+:root {
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --secondary: #10b981;
+  --secondary-hover: #34d399;
+  --blue: #2563eb;
+  --blue-hover: #3b82f6;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --white: #ffffff;
+  --black: #000000;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --grey-600: #4b5563;
+  --grey-700: #374151;
+  --grey-800: #1f2937;
+  --grey-900: #111827;
+  --border-radius: 0.375rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-800);
+  background-color: var(--grey-50);
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--grey-200);
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 1.5rem; /* Increased for prominence */
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.patient-welcome {
+  font-size: 1rem;
+  color: var(--grey-700);
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  padding: 1.5rem 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 2fr; /* Left column smaller, right column larger */
+  }
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  background-color: var(--white);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Allow panels to adjust height */
+  overflow: hidden;
+}
+
+.panel-header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Specific panel heights for patient dashboard */
+.patient-details-panel {
+  min-height: 200px; /* Adjust as needed */
+}
+
+#prescription-history,
+#medical-reports,
+#bills-payments {
+  flex: 1; /* Allow these sections to take equal height */
+  min-height: 300px; /* Ensure a minimum height for scrollable content */
+}
+
+/* Buttons - Replicated from doctor.css */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: none;
+  outline: none;
+}
+
+.btn svg,
+.btn i { /* Added i for Remixicon */
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.primary-btn {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.secondary-btn {
+  background-color: var(--secondary);
+  color: var(--white);
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+.outline-btn {
+  background-color: transparent;
+  border: 1px solid var(--grey-300);
+  color: var(--grey-700);
+}
+
+.outline-btn:hover:not(:disabled) {
+  background-color: var(--grey-100);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Scrollable List for Medical History/Prescriptions/Reports/Bills */
+.scrollable-list {
+  max-height: 400px; /* Increased max-height for more content */
+  overflow-y: auto;
+  padding-right: 10px; /* For scrollbar spacing */
+}
+
+/* Item Cards (Prescription, Report, Bill) */
+.card-item {
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-item h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--grey-800);
+}
+
+.card-item p {
+  font-size: 0.875rem;
+  color: var(--grey-600);
+  margin-bottom: 0.25rem;
+}
+
+.card-item .card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-item .card-actions .btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+/* Medical History/File Item - Retained from original patient.css but updated */
+.file-item {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: #e8f0fe;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  word-break: break-word;
+}
+
+/* Upload Section */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-form .input[type="file"] {
+  background-color: var(--white);
+  padding: 0.75rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+}
+
+.upload-note {
+  font-size: 0.875rem;
+  color: var(--grey-500);
+  margin-top: 0.5rem;
+}
+
+/* EHR Summary Preview (Modal content style) */
+.prescription-paper {
+  padding: 1.5rem;
+  border: 1px solid var(--grey-200);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prescription-paper h4 {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--grey-200);
+  padding-bottom: 0.5rem;
+}
+
+.prescription-paper p {
+  margin-bottom: 0.5rem;
+}
+
+.prescription-paper strong {
+  color: var(--grey-800);
+}
+
+.summary-section {
+  margin-bottom: 1.5rem;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-list li {
+  background-color: var(--grey-100);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* Chatbot styles */
+#chatbot-section .panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start; /* Align button to start of container */
+}
+
+.section-description {
+    font-size: 0.875rem;
+    color: var(--grey-600);
+    line-height: 1.4;
+}
+
+.chatbot-toggle-btn {
+  /* Removed fixed positioning as it's now in document flow */
+  /* position: fixed; */
+  /* bottom: 2rem; */
+  /* right: 2rem; */
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: var(--border-radius); /* Rectangular with slight roundness */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem; /* Adjusted font size for button text */
+  padding: 0.75rem 1.25rem; /* Rectangular padding */
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  z-index: 1001;
+  transition: background-color 0.2s, transform 0.2s;
+  border: none; /* Ensure no default button border */
+}
+
+.chatbot-toggle-btn i {
+    margin-right: 0.75rem; /* Space between icon and text */
+    font-size: 1.25rem; /* Adjust icon size */
+}
+
+.chatbot-toggle-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Tooltip for the new button placement */
+.chatbot-toggle-btn .tooltip-text {
+  visibility: hidden;
+  width: 150px;
+  background-color: var(--grey-800);
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  /* Adjust positioning relative to the button in flow */
+  top: -30px; /* Above the button */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.chatbot-toggle-btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chatbot {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 6rem; /* Above the toggle button if it were fixed, adjust as needed or remove if button is embedded */
+  right: 2rem;
+  width: 450px; /* Increased size */
+  height: 600px; /* Increased size */
+  background: white;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  flex-direction: column;
+  z-index: 1002;
+  resize: both; /* Allow resizing */
+  overflow: auto; /* Ensure content fits */
+}
+
+.chatbot.show {
+  display: flex;
+}
+
+.chatbot-header {
+  padding: 0.75rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: grab; /* Indicates draggable */
+  user-select: none;
+}
+
+.chatbot-header.dragging {
+  cursor: grabbing;
+}
+
+#close-chatbot-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.message {
+  max-width: 80%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1rem;
+  word-wrap: break-word;
+}
+
+.user.message {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: white;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.bot.message {
+  align-self: flex-start;
+  background-color: var(--grey-200);
+  color: var(--grey-800);
+  border-bottom-left-radius: 0.25rem;
+}
+
+#chat-form {
+  display: flex;
+  padding: 0.75rem;
+  border-top: 1px solid var(--grey-200);
+  gap: 0.5rem;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+}
+
+.chat-submit-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.chat-submit-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Modal - Replicated from doctor.css */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 800px; /* Adjusted max-width */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.modal-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--grey-500);
+  line-height: 1;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto; /* Enable scrolling for modal body */
+  padding: 1.5rem; /* Padding for content inside */
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--grey-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+
+/* Footer Styling - Retained and slightly adjusted */
+.footer {
+  flex-shrink: 0;
+  background-color: var(--white);
+  border-top: 1px solid var(--grey-200);
+  padding: 15px 0; /* Adjusted padding */
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 1rem; /* Consistent padding */
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-info {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-info .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.footer-info .logo i {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+.footer-info .logo span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.footer-info p {
+  font-size: 0.875rem;
+  color: var(--grey-600);
+  margin-top: 0.25rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links-column h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--grey-800);
+  margin-bottom: 0.5rem;
+}
+
+.footer-links-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-column li {
+  margin-bottom: 0.25rem;
+}
+
+.footer-links-column a {
+  font-size: 0.875rem;
+  color: var(--grey-600);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links-column a:hover {
+  color: var(--primary);
+}
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--grey-200);
+  font-size: 0.75rem;
+  color: var(--grey-500);
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .left-column, .right-column {
+    height: auto;
+  }
+
+  .chatbot {
+    width: 90%;
+    height: 70%;
+    bottom: 1rem;
+    right: 5%;
+    left: 5%;
+    transform: translateX(0); /* Remove specific positioning for mobile */
+  }
+
+  /* Chatbot toggle button in the new section will automatically adapt */
+  .chatbot-toggle-btn {
+      width: auto;
+      height: auto;
+      font-size: 0.9rem; /* Smaller font for mobile */
+      padding: 0.6rem 1rem;
+  }
+
+}
+
+
+/* === Appointment Form Cleanup === */
+#appointment-section .panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem;
+}
+
+#appointment-section .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#appointment-section label {
+  font-weight: 600;
+  color: var(--grey-700);
+}
+
+/* Inputs look like your platform design */
+#appointment-section input[type="date"],
+#appointment-section select {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  color: var(--grey-800);
+  box-shadow: var(--shadow-sm);
+  transition: 0.3s ease all;
+  appearance: none;
+}
+
+/* Remove orange calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+/* Consistent dropdown arrow */
+#appointment-section select {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+/* Button spacing */
+#appointment-section button {
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+
+/* === Flatpickr Date Input Placeholder Styling === */
+#appt-date::placeholder {
+  color: var(--grey-500); /* Subtle gray */
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  opacity: 1; /* Ensure visibility */
+}
+
+/* Ensure Flatpickr altInput gets similar placeholder styling */
+.flatpickr-input[readonly] {
+  color: var(--grey-800);
+  background-color: var(--white);
+  font-size: 1rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.flatpickr-input[readonly]::placeholder {
+  color: var(--grey-500);
+  font-style: italic;
+}
+
+/* === Unified Styling for Appointment Inputs === */
+#appointment-section input[type="text"],
+#appointment-section select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  color: var(--grey-800);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  appearance: none;
+}
+
+/* Hover & Focus Styles */
+#appointment-section input[type="text"]:hover,
+#appointment-section select:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+#appointment-section input[type="text"]:focus,
+#appointment-section select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* Dropdown arrow for select */
+#appointment-section select {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+/* Flatpickr readonly input (altInput) */
+.flatpickr-input[readonly] {
+  background-color: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  color: var(--grey-800);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}

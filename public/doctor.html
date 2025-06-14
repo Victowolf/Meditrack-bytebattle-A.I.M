@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard</title>
+  <link rel="stylesheet" href="css/doctor.css">
+  <!-- jsPDF Library and AutoTable plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+            <h1>MediTrek</h1>
+          </div>
+          <div class="user-info">
+            <span class="doctor-name">Dr. Jighyanshu Kumar</span>
+            <div class="avatar">SJ</div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        <div class="dashboard-grid">
+          <!-- Left Column (Patient List and Details) -->
+          <div class="left-column">
+            <!-- Patient List -->
+            <div class="panel patient-list-panel">
+              <div class="panel-header">
+                <h3>Patients</h3>
+                <div class="panel-actions">
+                </div>
+              </div>
+              <div class="panel-body">
+                <div id="patient-list-area" class="patient-list">
+                  <!-- Patient list items will be added here by JavaScript -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Patient Details -->
+            <div class="panel patient-details-panel">
+              <div class="panel-header">
+                <h3>Patient Details</h3>
+              </div>
+              <div class="panel-body">
+                <div id="patient-details" class="patient-details">
+                  <!-- Patient details will be added here by JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column (Prescription Interface) -->
+          <div class="right-column">
+            <div id="prescription-container" class="panel prescription-panel">
+              <div class="panel-header">
+                <h3>Prescription</h3>
+                <div class="panel-actions">
+                  <button id="clear-prescription-btn" class="icon-button" title="Clear form">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                  <button class="icon-button" title="Templates">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                      <line x1="12" y1="18" x2="12" y2="18"></line>
+                      <line x1="8" y1="6" x2="16" y2="6"></line>
+                      <line x1="8" y1="10" x2="16" y2="10"></line>
+                      <line x1="8" y1="14" x2="16" y2="14"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="panel-body prescription-content">
+                <div id="prescription-form">
+                  <!-- Prescription form will be shown here when a patient is selected -->
+                </div>
+              </div>
+              <div class="panel-footer">
+               <div class="button-group">
+  <button id="save-prescription-btn" class="btn primary-btn" disabled>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+      <polyline points="17 21 17 13 7 13 7 21"></polyline>
+      <polyline points="7 3 7 8 15 8"></polyline>
+    </svg>
+    Save
+  </button>
+
+  <!-- ✅ New Schedule Button -->
+  <button id="schedule-btn" class="btn secondary-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 7V3m8 4V3m-9 8h10m-12 8h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
+    </svg>
+    Schedule
+  </button>
+
+  <!-- Appointment Floating Panel -->
+  <div id="appointment-floating-panel" class="floating-panel hidden">
+  <div class="floating-header">
+    <span>📅 Upcoming Appointments</span>
+    <button onclick="document.getElementById('appointment-floating-panel').classList.add('hidden')">&times;</button>
+  </div>
+  <div id="appointment-list" class="floating-body">
+    Loading...
+  </div>
+</div>
+
+
+  <button id="download-btn" class="btn blue-btn" disabled>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Download
+  </button>
+
+  <button id="assistant-btn" class="btn secondary-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9"></path>
+      <path d="M12 4h9"></path>
+      <path d="M4 9h16"></path>
+      <path d="M4 15h16"></path>
+    </svg>
+    Assistant
+  </button>
+
+  <button id="report-view-btn" class="btn secondary-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M4 4h16v16H4z"/>
+      <path d="M4 9h16"/>
+    </svg>
+    View Reports
+  </button>
+</div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- PDF Preview Modal -->
+    <div id="pdf-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Prescription Preview</h3>
+          <button id="close-modal-btn" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe id="pdf-preview" src="" frameborder="0"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-close-btn" class="btn outline-btn">Close</button>
+          <button id="modal-download-btn" class="btn blue-btn">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden">
+    <div class="toast-content">
+      <span id="toast-message"></span>
+    </div>
+  </div>
+  <div id="chatbot-container" class="chatbot hidden">
+  <div class="chatbot-header" id="chatbot-header">
+    <span> Doctor Assistant</span>
+    <button id="close-chatbot-btn" class="close-btn">&times;</button>
+  </div>
+  <div id="chat-messages" class="chat-messages"></div>
+  <form id="chat-form">
+    <input type="text" id="chat-input" placeholder="Ask something..." autocomplete="off" />
+    <button type="submit" class="chat-submit-btn">Send</button>
+  </form>
+</div>
+<div id="report-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Medical History Files</h3>
+      <button id="close-report-btn" class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body" id="report-files-container" style="padding: 1rem; overflow-y: auto;">
+      <!-- Files will be loaded here dynamically -->
+    </div>
+    <div class="modal-footer">
+      <button id="report-modal-close-btn" class="btn outline-btn">Close</button>
+    </div>
+  </div>
+</div>
+  <script src="js/doctor.js"></script>
+</body>
+</html>  

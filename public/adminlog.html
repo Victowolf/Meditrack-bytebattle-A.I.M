@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin Login | MediTrack</title>
+  <link rel="stylesheet" href="css/adminlog.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="admin-main">
+    <div class="card">
+      <div class="hero">
+        <div class="hero-inner">
+          <h2>Welcome Admin</h2>
+          <h3>Secure access to the control panel</h3>
+        </div>
+      </div>
+
+      <!-- 🔔 Wallet auth error message -->
+      <p id="wallet-warning" style="color:red; text-align:center; margin-bottom: 10px;"></p>
+
+      <form id="admin-login-form" style="display: none;">
+        <h2>MediTrack Admin</h2>
+        <h3>Login to your account</h3>
+
+        <input type="text" id="admin-id" placeholder="Admin ID" required />
+        
+        <input type="password" id="admin-password" placeholder="Password" required />
+        <button type="submit">Login</button>
+
+        <!-- 🔴 Credential error message -->
+        <p id="error-message" class="error" style="color:red;"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/adminlog.js"></script>
+</body>
+</html>

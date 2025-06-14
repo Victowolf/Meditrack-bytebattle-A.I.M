@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Patient Registration System</title>
+  <meta name="description" content="Complete patient registration system with form submission, ID generation, and printable patient card functionality">
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Patient Registration System">
+  <meta property="og:description" content="Register new patients, generate unique IDs, and print patient identification cards">
+  <meta property="og:type" content="website">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/patientREG.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <h1>Patient Registration System</h1>
+      <p>Complete the form below to register a new patient</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Progress Indicator -->
+      <div class="progress-indicator">
+        <div class="step-container">
+          <div id="step-registration" class="step active">
+            <div class="step-icon"><i class="fas fa-user"></i></div>
+            <p>Registration</p>
+          </div>
+          <div id="step-credentials" class="step">
+            <div class="step-icon"><i class="fas fa-key"></i></div>
+            <p>Credentials</p>
+          </div>
+          <div id="step-card" class="step">
+            <div class="step-icon"><i class="fas fa-id-card"></i></div>
+            <p>Patient Card</p>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div id="registration-section" class="section">
+        <h2>Patient Information</h2>
+        
+        <form id="patient-form">
+          <div class="form-grid">
+            <!-- Patient Name -->
+            <div class="form-group">
+              <label for="name">Patient Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Enter full name" required>
+            </div>
+            
+            <!-- Gender -->
+            <div class="form-group">
+              <label for="gender">Gender <span class="required">*</span></label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <!-- Contact Number -->
+            <div class="form-group">
+              <label for="contactNumber">Contact Number <span class="required">*</span></label>
+              <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter contact number" required>
+            </div>
+            
+            <!-- Birth Date -->
+            <div class="form-group">
+              <label for="birthDate">Birth Date <span class="required">*</span></label>
+              <input type="date" id="birthDate" name="birthDate" required>
+            </div>
+            
+            <!-- Blood Group -->
+            <div class="form-group">
+              <label for="bloodGroup">Blood Group <span class="required">*</span></label>
+              <select id="bloodGroup" name="bloodGroup" required>
+                <option value="" disabled selected>Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email ID <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="Enter email address" required>
+            </div>
+          </div>
+          
+          <!-- Address -->
+          <div class="form-group">
+            <label for="address">Address <span class="required">*</span></label>
+            <textarea id="address" name="address" placeholder="Enter full address" required></textarea>
+          </div>
+          
+          <!-- Emergency Contact -->
+          <div class="form-group">
+            <label for="emergencyContact">Emergency Contact Number <span class="required">*</span></label>
+            <input type="text" id="emergencyContact" name="emergencyContact" placeholder="Enter emergency contact number" required>
+          </div>
+
+          <!-- File Upload -->
+          <div class="form-group">
+            <label>Upload Documents <span class="optional">(ID proof, medical records, etc.)</span></label>
+            <div class="file-upload-container">
+              <div class="file-drop-area" id="file-drop-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag and drop files here or click to browse</p>
+                <input type="file" id="file-upload" multiple class="file-input">
+              </div>
+              <div id="file-list" class="file-list"></div>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <button type="submit" id="submit-btn" class="btn btn-primary">
+              <span class="btn-text">Register Patient</span>
+              <span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Credentials Section -->
+      <div id="credentials-section" class="section hidden">
+        <h2>Generated Credentials</h2>
+        
+        <div class="credential-card">
+          <div class="credential-header">
+            <h3>Your patient registration is complete!</h3>
+            <p>Please save your unique ID and password for future logins.</p>
+          </div>
+          
+          <div class="credential-grid">
+            <div class="credential-item">
+              <label for="patientId">Patient ID</label>
+              <div class="credential-input">
+                <input type="text" id="patientId" readonly>
+                <button class="copy-btn" data-target="patientId">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="credential-item">
+              <label for="patientPassword">Password</label>
+              <div class="credential-input">
+                <input type="text" id="patientPassword" readonly>
+                <button class="copy-btn" data-target="patientPassword">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <h4>Important Note</h4>
+              <p>These credentials are used for accessing your patient portal. Please keep them secure and do not share with others.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button id="proceed-to-card-btn" class="btn btn-primary">Generate Patient Card</button>
+        </div>
+      </div>
+
+      <!-- Patient Card Section -->
+      <div id="patient-card-section" class="section hidden">
+        <h2>Patient Card</h2>
+        <p class="section-desc">Your patient card has been generated. You can print it for your records.</p>
+        
+        <div id="patient-card" class="patient-card">
+          <div class="card-header">
+            <h3>Patient Identification Card</h3>
+            <div class="card-tag">Official</div>
+          </div>
+
+          <div class="card-details">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="field-name">Name:</td>
+                  <td id="card-name" class="field-value"></td>
+                </tr>
+                <tr>
+                  <td class="field-name">Patient ID:</td>
+                  <td id="card-id" class="field-value"></td>
+                </tr>
+                <tr>
+                  <td class="field-name">Blood Group:</td>
+                  <td id="card-blood" class="field-value"></td>
+                </tr>
+                <tr>
+                  <td class="field-name">Date of Birth:</td>
+                  <td id="card-dob" class="field-value"></td>
+                </tr>
+                <tr>
+                  <td class="field-name">Contact:</td>
+                  <td id="card-contact" class="field-value"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <div class="emergency-contact">
+              Emergency Contact: <span id="card-emergency"></span>
+            </div>
+            <div class="card-bottom">
+              <div class="valid-from">
+                Valid From: <span id="card-valid-date"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button id="print-card-btn" class="btn btn-primary">
+            <i class="fas fa-print"></i> Print Patient Card
+          </button>
+          <p class="print-note">Only the card will be printed, not the entire page.</p>
+        </div>
+
+        <div class="new-registration">
+          <button id="new-registration-btn" class="btn btn-outline">
+            <i class="fas fa-redo"></i> Register Another Patient
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© <span id="current-year"></span> Patient Registration System. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden">
+    <div class="toast-content">
+      <i id="toast-icon" class="fas"></i>
+      <div class="toast-message">
+        <span id="toast-title"></span>
+        <p id="toast-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="js/patientREG.js"></script>
+</body>
+</html>

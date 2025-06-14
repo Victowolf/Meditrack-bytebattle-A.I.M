@@ -1,0 +1,245 @@
+:root {
+  --color-primary: #4a63f7;
+  --color-border: #d0d0d6;
+  --color-placeholder: #9c99a4;
+  --color-focus-shadow: rgba(74, 99, 247, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #e8dfff;
+  color: #645e74;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 20px;
+  width: clamp(300px, 85vw, 500px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+  background: url("hero.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: "Space Grotesk", sans-serif;
+  min-height: 170px;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to bottom right, rgb(95, 69, 168) 0%, rgba(95, 69, 168, 0.7) 70%);
+  height: 100%;
+  padding: 40px 36px;
+  color: white;
+}
+
+.hero h2 {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.hero h3 {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #c7c2d6;
+}
+
+form {
+  padding: 30px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+form > h2 {
+  color: var(--color-primary);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+form > h3 {
+  color: #6c6884;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+input,
+button {
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: #f9f9fc;
+  color: #333;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus-shadow);
+  background: #fff;
+}
+
+input::placeholder {
+  color: var(--color-placeholder);
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+button[type="submit"] {
+  color: #ffffff;
+  background: var(--color-primary);
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #3a4ee0;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #f2f3f6;
+  border: 1px solid #d4d6e0;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 44px;
+  flex: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: #e6e8f2;
+  transform: scale(1.02);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.social-btn img {
+  height: 20px;
+}
+
+.extra-text {
+  display: none;
+  font-size: 13px;
+  color: #888;
+}
+
+.or {
+  position: relative;
+  text-align: center;
+  height: 24px;
+  margin: 10px 0;
+}
+
+.or::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  translate: 0 -50%;
+  height: 1px;
+  background: var(--color-border);
+  opacity: 0.6;
+}
+
+.or::after {
+  content: "Or";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+  background: #ffffff;
+  font-size: 12px;
+  padding: 0 12px;
+}
+
+/* Responsive layout tweaks */
+@media (width >= 485px) {
+  .card {
+    width: clamp(300px, 90vw, 740px);
+  }
+}
+
+@media (width >= 640px) {
+  .card {
+    flex-direction: row;
+    padding: 8px 0 8px 8px;
+  }
+
+  form {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  form:is(h2, h3) {
+    text-align: left;
+  }
+
+  .hero-inner {
+    align-items: flex-start;
+    padding: 0 36px;
+  }
+
+  .socials {
+    flex-direction: column;
+  }
+
+  .extra-text {
+    display: inline;
+  }
+
+  .hero h3 {
+    display: block;
+  }
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-size: 0.9rem;
+}

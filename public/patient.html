@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" href="css/patient.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+  <div class="app">
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">
+          <h1>EHR – Patient Dashboard</h1>
+        </div>
+        <div class="user-info">
+          <span class="patient-welcome">Welcome, <span id="welcome-patient-name">Patient</span></span>
+          <button class="btn outline-btn" id="logout-btn"><i class="ri-logout-box-r-line"></i> Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main container">
+      <div class="dashboard-grid">
+        <div class="left-column">
+          <div class="panel patient-details-panel">
+            <div class="panel-header">
+              <h3>Patient Details</h3>
+            </div>
+            <div class="panel-body patient-details">
+              <p><strong>PUD:</strong> <span id="detail-pud"></span></p>
+              <p><strong>Name:</strong> <span id="detail-name"></span></p>
+              <p><strong>Gender:</strong> <span id="detail-gender"></span></p>
+              <p><strong>DOB:</strong> <span id="detail-DOB"></span></p>
+              <p><strong>Email:</strong> <span id="detail-email"></span></p>
+            </div>
+          </div>
+
+<div class="panel section" id="appointment-section">
+  <div class="panel-header">
+    <h3>Book Appointment</h3>
+  </div>
+  <div class="panel-body">
+    <form id="appointment-form">
+      <p><strong>Name:</strong> <span id="appt-name"></span></p>
+      <p><strong>PUD:</strong> <span id="appt-pud"></span></p>
+      <div class="form-group">
+        <label for="appt-date"><strong>Date:</strong> </label>
+        <input type="text" id="appt-date" placeholder="Select Date" required />
+
+      </div>
+      <div class="form-group">
+        <label for="appt-time"><strong>Select Time Slot:</strong></label>
+        <select id="appt-time" required>
+          <option value="">Select Time</option>
+          <option value="09:00 AM">09:00 AM</option>
+          <option value="10:00 AM">10:00 AM</option>
+          <option value="11:00 AM">11:00 AM</option>
+          <option value="02:00 PM">02:00 PM</option>
+          <option value="03:00 PM">03:00 PM</option>
+        </select>
+      </div>
+      <button type="submit" class="btn primary-btn"><i class="ri-calendar-check-line"></i> Book Appointment</button>
+    </form>
+  </div>
+</div>
+
+
+          <div class="panel section" id="upload-report-section">
+            <div class="panel-header">
+              <h3>Upload My External Health Report</h3>
+            </div>
+            <div class="panel-body">
+              <form id="upload-form" class="upload-form">
+                <div class="form-group">
+                  <input type="file" id="health-report-file" accept=".pdf,.jpg,.png" class="input"multiple/>
+                </div>
+                <button type="submit" class="btn primary-btn"><i class="ri-upload-cloud-line"></i> Upload Report</button>
+                <p class="upload-note">Uploaded files will be visible to your doctor only.</p>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel section" id="ehr-summary-section">
+            <div class="panel-header">
+              <h3>My Portable EHR Summary</h3>
+            </div>
+            <div class="panel-body">
+              <button class="btn secondary-btn" id="download-ehr-summary-btn">
+                <i class="ri-file-download-line"></i> Download My Health Summary (PDF)
+              </button>
+            </div>
+          </div>
+
+          <div class="panel section" id="chatbot-section">
+            <div class="panel-header">
+              <h3>Health Assistant</h3>
+            </div>
+            <div class="panel-body">
+              <button class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+                <i class="ri-chat-3-line"></i> Chat to Your Health Assistant
+                <span class="tooltip-text">Click to open chat</span>
+              </button>
+              <p class="section-description">Get instant answers to your health-related queries using our AI assistant.</p>
+            </div>
+          </div>
+          </div>
+
+        <div class="right-column">
+          <div class="panel section" id="prescription-history">
+            <div class="panel-header">
+              <h3>My Prescriptions</h3>
+            </div>
+            <div class="panel-body scrollable-list" id="prescription-list">
+              </div>
+          </div>
+
+          <div class="panel section" id="medical-reports">
+            <div class="panel-header">
+              <h3>My Lab Reports</h3>
+            </div>
+            <div class="panel-body scrollable-list" id="report-list">
+              </div>
+          </div>
+
+          <div class="panel section" id="bills-payments">
+            <div class="panel-header">
+              <h3>My Bills & Invoices</h3>
+            </div>
+            <div class="panel-body scrollable-list" id="bill-list">
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal" id="ehr-summary-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>EHR Summary Preview</h3>
+          <button class="close-btn" id="close-ehr-summary-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="prescription-paper" id="ehr-summary-content">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn outline-btn" id="print-ehr-summary-btn">Print</button>
+          <button class="btn primary-btn">Download PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot" id="chatbot-container">
+      <div class="chatbot-header" id="chatbot-header">
+        <span>Health Assistant</span>
+        <button id="close-chatbot-btn">&times;</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="bot message">Hello! How can I help you today?</div>
+      </div>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Type your message..." />
+        <button type="submit" class="chat-submit-btn"><i class="ri-send-plane-2-line"></i> Send</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="logo">
+              <i class="ri-heart-pulse-line"></i>
+              <span>MediTrack</span>
+            </div>
+            <p>Streamlined healthcare management</p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-links-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-links-column">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <p>&copy; <span id="current-year"></span> MediTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/patient.js"></script>
+</body>
+</html>

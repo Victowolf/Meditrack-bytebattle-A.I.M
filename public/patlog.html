@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Login | MediTrack</title>
+  <link rel="stylesheet" href="css/patlog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-RXf+QSDCUQs6b0RgW9yKIeFvFfN6K5RCVa+N6zjqPtK3nQqz8XW1cGp1zDHE2aa6z8yAYu4mVzYYddnCsrLZ7w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #16a34a, #86efac);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 600;
+    }
+    .brand i {
+      font-size: 1.8rem;
+    }
+    .login-card {
+      background: #fefefe;
+      padding: 3rem 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+    .login-card h2 {
+      margin-bottom: 1.5rem;
+      color: #14532d;
+    }
+    .login-card form {
+      display: flex;
+      flex-direction: column;
+    }
+    .login-card label {
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #166534;
+    }
+    .login-card input {
+      padding: 0.8rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #d1fae5;
+      margin-bottom: 1.2rem;
+      transition: 0.3s;
+    }
+    .login-card input:focus {
+      outline: none;
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+    }
+    .login-card button {
+      background-color: #16a34a;
+      color: white;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .login-card button:hover {
+      background-color: #15803d;
+    }
+    .login-card .error {
+      color: #dc2626;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .login-icon {
+      font-size: 2.5rem;
+      color: #22c55e;
+      margin-bottom: 1rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="brand">
+    <i class="fa-solid fa-heart-pulse"></i>
+    <span>MediTrack</span>
+  </div>
+  <div class="login-card">
+    <i class="fa-solid fa-user-injured login-icon"></i>
+    <h2>Patient Login</h2>
+    <form id="login-form">
+      <label for="pud">Patient ID (PUD)</label>
+      <input type="text" id="pud" name="pud" required placeholder="Enter your PUD">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+      <button type="submit">Login</button>
+      <p id="error-message" class="error"></p>
+    </form>
+  </div>
+
+  <script src="js/patlog.js"></script>
+</body>
+</html>
