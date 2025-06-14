@@ -1,6 +1,6 @@
-# Medora: Multi-Role Healthcare Management Dashboard
+# Meditrack: Multi-Role Healthcare Management Dashboard
 
-Medora is a secure, scalable, and modular web-based Enterprise Resource Management (ERM) system designed for modern healthcare institutions. It supports role-based access control and provides specialized dashboards for administrators, doctors, nurses, and patients.
+Meditrack is a blockchain secured, scalable, and modular web-based Enterprise Resource Management (ERM) system designed for modern healthcare institutions. It supports role-based access control and provides specialized dashboards for administrators, doctors, nurses, and patients.
 
 ## 🚀 Features
 
@@ -9,6 +9,7 @@ Medora is a secure, scalable, and modular web-based Enterprise Resource Manageme
 * Registration & login with secure authentication
 * Role assignment: Super Admin, Doctor, Nurse, Patient
 * Role-specific access control with protected routes
+* Blockchain autentication system
 
 ### 🔤 Dashboards
 
