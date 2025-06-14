@@ -80,6 +80,17 @@ npx hardhat run scripts/deploy.js --network localhost
 npm start                 # Start the backend/frontend
 ```
 
+### Demo video
+[WatchInAction](https://drive.google.com/file/d/1K9PQxwtXD58OLXqcjrK08wjKKseLBBuc/view?usp=sharing)
+
 ## 🙌 Team & Contributions
 
 Built as part of the **ByteBattle Hackathon** to modernize healthcare management with intelligent role-based systems and secure data access.
+
+---
+
+### Team mates
+- Yash R Hosalli
+- Prayas Murari
+- Jighyanshu Kumar
+- Kamran Aralikatti
